@@ -800,36 +800,6 @@ async def reset_daily_tokens():
     conn.close()
 
 async def on_startup(app):
-    # Set up the database
-    conn = sqlite3.connect('rpdatabase.db')
-    c = conn.cursor()
-
-    c.execute('''
-        CREATE TABLE IF NOT EXISTS user_profiles (
-            user_id INTEGER PRIMARY KEY, daily_token INTEGER DEFAULT 5
-        )
-    ''')
-
-    c.execute('''
-        CREATE TABLE IF NOT EXISTS banned_users (
-            user_id INTEGER PRIMARY KEY,
-            reason TEXT
-        )
-    ''')
-
-    c.execute('''
-        CREATE TABLE IF NOT EXISTS filter_words (
-            word TEXT PRIMARY KEY
-        )
-    ''')
-
-    c.execute('''CREATE TABLE IF NOT EXISTS chat_links
-             (chat_id TEXT PRIMARY KEY, link TEXT)''')
-
-    conn.commit()
-    conn.close()
-
-    # Set the webhook
     await bot.set_webhook(WEBHOOK_URL)
 
 async def on_shutdown(app):
