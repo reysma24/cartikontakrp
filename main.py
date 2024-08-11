@@ -845,5 +845,5 @@ app = get_new_configured_app(dispatcher=dp, path=WEBHOOK_PATH)
 app.on_startup.append(on_startup)
 app.on_shutdown.append(on_shutdown)
 
-if __name__ == '__main__':
-    web.run_app(app, host='0.0.0.0', port=3000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8000)
